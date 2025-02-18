@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Factorial Calculator</title>
+        <style>
+            html,body{
+                background-color: rgba(0, 0, 0, 0.84);
+                align-items: center;
+                border-style:solid;
+                border-color: aliceblue;
+                border-radius: 2px;
+            }
+            h2{
+                text-align: center;
+                color:aliceblue;
+                font-size: xx-large;
+            }
+            input{
+                font-size: x-large;
+                text-align: center;
+                background-color: rgb(30, 39, 210);
+                color:black;
+            }
+            button{
+                font-size: x-large;
+                text-align: center;
+                background-color: chartreuse;
+            }
+            button:hover{
+                background-color: red;
+            }
+            p{
+                color: aliceblue;
+            }
+            #resul-container{
+                max-width: 80%;
+                max-height: 200px;
+                overflow: auto;
+                word-wrap: break-word;
+                white-space: pre-wrap;
+                background-color: rgba(0, 0, 0, 0.84);
+                padding: 10px;
+                border-radius: 5px;
+                color: aliceblue;
+                text-align: center;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body align="center">
+        <h2>Factorial Calculator</h2>
+        <input type="number" id="number" placeholder="Enter a number" min="0"><br><br>
+        <button onclick="calculateFactorial()">Calculate</button><br>
+        <p id="result"></p>
+        <script>
+            function factorial(n) {
+                if (n == 0 || n == 1) {
+                    return 1;
+                }
+                return n * factorial(n - 1);
+            }
+
+            function calculateFactorial() {
+                let num = document.getElementById("number").value;
+                num = parseInt(num);
+                if (isNaN(num) || num < 0) {
+                    document.getElementById("result").innerText = "Please enter a valid non negative number";
+                    return;
+                }
+                let result = factorial(num);
+                document.getElementById("result").innerText = `Factorial of ${num} is ${result}`;
+            }
+        </script>
+        <hr>
+        <hr>
+        <h2>Fibonacci Calculator</h2>
+        <input type="number" id="numbe" placeholder="Enter a number" min="0"><br><br>
+        <button onclick="calculateFibonacci()">Calculate</button><br>
+        <div id="resul-container"><p id="resul"></p></div>
+        <script>
+            function calculateFibonacci() {
+                let n = document.getElementById("numbe").value;
+                n = parseInt(n);
+                if (isNaN(n) || n <= 0) {
+                    document.getElementById("resul").innerText = "Please enter a positive integer";
+                    return;
+
+                }
+                let fib = [0, 1];
+                for (let i = 2; i <= n; i++) {
+                    fib[i] = (fib[i - 1] + fib[i - 2]);
+                }
+                document.getElementById("resul").innerText = `Fibonacci Series: ${fib.join(',')}`;
+            }
+        </script>
+            <hr>
+            <hr>
+        <h2>Prime Number Checker</h2>
+        <input type="number" id="numb" placeholder="Enter a number"><br><br>
+        <button onclick="checkPrime()">Check</button><br>
+        <p id="res"></p>
+        <script>
+            function checkPrime() {
+                let num = parseInt(document.getElementById("numb").value);
+                if (isNaN(num) || num < 2) {
+                    document.getElementById("res").innerText = `"${num}" is not a prime number.`;
+                        return;
+                }
+                let isPrime = true;
+                for (let i = 2; i <= Math.sqrt(num); i++) {
+                    if (num % i === 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if (isPrime) {
+                    document.getElementById("res").innerText = `"${num}" is a prime number!`;
+                } else {
+                    document.getElementById("res").innerText = `"${num}" is not a prime number.`;
+                }
+            }
+        </script>
+        <hr>
+        <hr>
+        <h2>Palindrome Calculator</h2>
+        <input type="text" id="text" placeholder="Enter a word or phrase"><br><br>
+        <button onclick="checkPalindrome()">Check</button><br>
+        <p id="resu"></p>
+        <script>
+            function checkPalindrome() {
+                let str = document.getElementById("text").value;
+                let cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+                let reversedStr = cleanedStr.split("").reverse().join("");
+                if (cleanedStr === reversedStr) {
+                    document.getElementById("resu").innerText = `"${str}"is a palindrome!`;
+                } else {
+                    document.getElementById("resu").innerText = `"${str}"is not a palindrome.`;
+                }
+            }
+        </script>
+        <h2>Greatest Common Divisor Calculator</h2>
+        <input type="number" id="nu" placeholder="Enter first number">
+        <input type="number" id="nu2" placeholder="Enter second number"><br><br>
+        <button onclick="calculateGCD()">Calculate</button><br>
+        <p id="re"></p>
+        <script>
+            function calculateGCD() {
+                let a = parseInt(document.getElementById("nu").value);
+                let b = parseInt(document.getElementById("nu2").value);
+                if (isNaN(a) || isNaN(b) || a <= 0 || b <= 0) {
+                    document.getElementById("re").innerText = "Please enter valid positive numbers.";
+                    return;
+                }
+                function gcd(x, y) {
+                    while (y !== 0) {
+                        let temp = y;
+                        y = x % y;
+                        x = temp;
+                    }
+                    return x;
+                }
+                let result = gcd(a, b);
+                document.getElementById("re").innerText = `GCD of ${a} and ${b} is ${result}.`;
+            }
+        </script>
+        <hr>
+        <hr>
+        <h2>Least Common Multiple Calculator</h2>
+        <input type="number" id="no." placeholder="Enter first number">
+        <input type="number" id="no2" placeholder="Enter second number"><br><br>
+        <button onclick="calculateLCM()">Calculate</button><br>
+        <p id="rst"></p>
+        <script>
+            function calculateLCM() {
+                let a = parseInt(document.getElementById("no.").value);
+                let b = parseInt(document.getElementById("no2").value);
+                if (isNaN(a) || isNaN(b) || a <= 0 || b <= 0) {
+                    document.getElementById("rst").innerText = "Please enter valid positive numbers.";
+                    return;
+                }
+                function gcd(x, y) {
+                    while (y !== 0) {
+                        let temp = y;
+                        y = x % y;
+                        x = temp;
+                    }
+                    return x;
+                }
+                function lcm(x, y) {
+                    return (x * y) / gcd(x, y);
+                }
+                let result = lcm(a, b);
+                document.getElementById("rst").innerText = `LCM of ${a} and ${b} is ${result}.`;
+            }
+        </script>
+    </body>
+</html>
