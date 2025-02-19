@@ -140,6 +140,8 @@
                 }
             }
         </script>
+        <hr>
+        <hr>
         <h2>Greatest Common Divisor Calculator</h2>
         <input type="number" id="nu" placeholder="Enter first number">
         <input type="number" id="nu2" placeholder="Enter second number"><br><br>
